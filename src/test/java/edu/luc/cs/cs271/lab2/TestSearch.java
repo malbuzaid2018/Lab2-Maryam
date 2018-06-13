@@ -88,4 +88,41 @@ public class TestSearch {
     assertEquals(Optional.of(4), Search.findTeamMinFunding(arr, minFunding));
   }
 
+  // Done
+  @Test
+  public void testFindMinFundingArrayFast400() {
+    final Team[] arr = makeArrayFixture(5);
+    final int minFunding = 400;
+    assertEquals(Optional.of(4), Search.findTeamMinFundingFast(arr, minFunding));
+  }
+
+    @Test
+    public void testFindMinFundingArrayFast3000() {
+        final Team[] arr = makeArrayFixture(300);
+        final int minFunding = 1780;
+        assertEquals(Optional.of(18), Search.findTeamMinFundingFast(arr, minFunding));
+    }
+
+
+    @Test
+    public void testFindMinFundingArrayFast5000() {
+        final Team[] arr = makeArrayFixture(5000);
+        final int minFunding = 1210;
+        assertEquals(Optional.of(12), Search.findTeamMinFundingFast(arr, minFunding));
+    }
+
+  @Test
+  public void testFindMinFundingArrayFast700() {
+    final Team[] arr = makeArrayFixture(2);
+    final int minFunding = 700;
+    assertEquals(Optional.empty(), Search.findTeamMinFundingFast(arr, minFunding));
+  }
+
+  @Test
+  public void testFindMinFundingArrayFast100() {
+    final Team[] arr = makeArrayFixture(3);
+    final int minFunding = 100;
+    assertEquals(Optional.of(1), Search.findTeamMinFundingFast(arr, minFunding));
+  }
+
 }

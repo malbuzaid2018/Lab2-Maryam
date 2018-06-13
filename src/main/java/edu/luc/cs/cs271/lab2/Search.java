@@ -86,12 +86,6 @@ public class Search {
         low = mid + 1;
       }
 
-      /*if (low <= high && arr[low].getFunding() >= minFunding) {
-        return Optional.of(low);
-      } else {
-        return Optional.empty();
-      }*/
-
     }
 
     return Optional.empty();
