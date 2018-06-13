@@ -1,6 +1,11 @@
 package edu.luc.cs.cs271.lab2;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.Assert.*;
 
 public class TestSearch {
@@ -14,7 +19,15 @@ public class TestSearch {
     return array;
   }
 
-  // TODO makeListFixture
+  // Done
+  List<Team> makeListFixture(final int size) {
+    final List<Team> list = new ArrayList<Team>();
+    for (int i = 0; i < size; i++) {
+      final String s = Integer.toString(i);
+      list.add(new Team("Team " + s, "Coach " + s, i * 100 + 50));
+    }
+    return list;
+  }
 
   @Test
   public void testFindPositionArray0() {
@@ -34,9 +47,45 @@ public class TestSearch {
     assertFalse(Search.findTeamPosition(arr, "Team 11").isPresent());
   }
   
-  // TODO: testFindPositionList0, 10s, 10f
-  
-  // TODO: testFindMinFundingArray for several sizes and scenarios
+  // Done
+  @Test
+  public void testFindPositionList0() {
+    final List<Team> list = makeListFixture(0);
+    assertFalse(Search.findTeamPosition(list, "Team 2").isPresent());
+  }
 
-  // TODO: testFindMinFundingArrayFast for several sizes and scenarios
+  @Test
+  public void testFindPositionList10s() {
+    final List<Team> list = makeListFixture(10);
+    assertTrue(Search.findTeamPosition(list, "Team 7").isPresent());
+  }
+
+  @Test
+  public void testFindPositionList10f() {
+    final List<Team> list = makeListFixture(10);
+    assertFalse(Search.findTeamPosition(list, "Team 15").isPresent());
+  }
+  
+  // Done
+  @Test
+  public void testFindMinFundingArray200() {
+    final Team[] arr = makeArrayFixture(3);
+    final int minFunding = 200;
+    assertEquals(Optional.of(2), Search.findTeamMinFunding(arr, minFunding));
+  }
+
+  @Test
+  public void testFindMinFundingArray900() {
+    final Team[] arr = makeArrayFixture(3);
+    final int minFunding = 900;
+    assertEquals(Optional.empty(), Search.findTeamMinFunding(arr, minFunding));
+  }
+
+  @Test
+  public void testFindMinFundingArray400() {
+    final Team[] arr = makeArrayFixture(7);
+    final int minFunding = 400;
+    assertEquals(Optional.of(4), Search.findTeamMinFunding(arr, minFunding));
+  }
+
 }
